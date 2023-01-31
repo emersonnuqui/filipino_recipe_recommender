@@ -27,7 +27,6 @@ def get_recommendations(N, ingredients):
     tfidf_matrix = tf.fit_transform(recipe_df['ingredients_clean'])
     translator = Translator()
     text = translator.translate(ingredients, dest='en').text
-    st.write(text)
     test = tf.transform([str(text)])
     test_cosine = cosine_similarity(tfidf_matrix, test)
     recommend_cosine = sorted(range(len(test_cosine)), key = lambda sub: test_cosine[sub])[-N:]
